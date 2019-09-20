@@ -63,7 +63,7 @@ $ subl address/ robotControlUI.fl
 
 # 8. Start ClipCannula
 ```bash
-$ rostopic pub /eyebot2/ForceRebias Flag std_msg/Int32 1
+$ rostopic pub /eyebot2/ForceRebiasFlag std_msgs/Int32 1
 ```
 * 1 for tip on, 2 for tip off
 * click Forcesensor in GUI
