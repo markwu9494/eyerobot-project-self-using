@@ -27,3 +27,18 @@ conflict 2
 ```bash
 $ catkin build eye_robot_example
 ```
+# 2. differnet tool tip offset should be noted
+In order to know the position of tool's tip, it's necessary to tell the PC the distance between the mechanical RCM point and the tip
+* open the related file
+```bash
+$ subl address/ robotControlUI.fl
+```
+* search "TipOffset"
+* change the value which is depend on the tool
+
+# 3. differnet tool name should be noted
+* we can see the tool name in GUI --> Tip Force --> Tool "Name"
+* search FBGSensor/code/devFBGSensor.h
+* in the code, change "#define Tool_NO"
+* for dual sensor, number series is 9-4-3-3 (from N-SENSORS --> N-CHANNELS)
+* for only tip sensor, number series is 3-2-1-3 (from N-SENSORS --> N-CHANNELS)
