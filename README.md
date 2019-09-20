@@ -42,3 +42,29 @@ $ subl address/ robotControlUI.fl
 * in the code, change "#define Tool_NO"
 * for dual sensor, number series is 9-4-3-3 (from N-SENSORS --> N-CHANNELS)
 * for only tip sensor, number series is 3-2-1-3 (from N-SENSORS --> N-CHANNELS)
+
+# 4. if we make a new FBG tool
+* the simplest way is to overwrite the existing useless one
+* change the calibration matrix in decFBGSensor.cpp
+
+# 5. "Logger" function
+* click Logger
+* write the file name
+* press SetFileName 
+* the file is saved in Home/storage/exp/robot
+
+# 6. Cisst communicate with ROS
+* eye-robot-example/eye-robot-example/main.cpp
+* go to "ros bridge”
+* in mtsCISSTToRos.h find the corresponding Cisst msg and ROS msg
+
+# 7. robotversion
+* Home/catkin_ws/src/eye_robot/robotVersion.h
+
+# 8. Start ClipCannula
+```bash
+$ rostopic pub /eyebot2/ForceRebias Flag std_msg/Int32 1
+```
+* 1 for tip on, 2 for tip off
+* click Forcesensor in GUI
+* click rebias
