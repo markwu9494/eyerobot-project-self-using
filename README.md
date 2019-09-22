@@ -68,3 +68,53 @@ $ rostopic pub /eyebot2/ForceRebiasFlag std_msgs/Int32 1
 * 1 for tip on, 2 for tip off
 * click Forcesensor in GUI
 * click rebias
+
+# 9. Using the microscope
+* first set the microscope in a suitable place
+* integrate a camera on the microscope
+* strat a software named as "coriander"
+```bash
+$ sudo coriander
+```
+* then press "service" --> "display"
+*save video
+```bash
+$ cd storage/
+$ cd exp/
+$ cd vedieos/
+$ ./ssr
+```
+
+# 10. Qt creater tip
+* ctrl + function name
+* ctrl + variable
+
+# 11. mode CM_SLAVE
+* connect two pc by a physical Ethernet cable
+* open .bashrc
+```bash
+$ gedit .bashrc
+```
+* choose the required ROS_MASTER_URI (first for bilateral control, second for single robot)
+* open robotTask.cpp
+* change the following code
+```bash
+InitEyeRegister = false;
+InitRobotRegister = false;
+```
+to
+```bash
+InitEyeRegister = true;
+InitRobotRegister = true;
+```
+* then press the button "SlaveButton"
+* start registration
+* if you want to change the registeration numbers
+* cahnge it in robotControlAlgorithm.h
+```bash
+NumEyeRegisterData 32;
+NumRobotRegisterData 32;
+```
+
+# 12. tip for rcm calibration
+* for eyerobot 2.1, the measured length should minus 23.45 mm
