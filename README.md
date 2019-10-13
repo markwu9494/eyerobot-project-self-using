@@ -118,3 +118,30 @@ NumRobotRegisterData 32;
 
 # 12. tip for rcm calibration
 * for eyerobot 2.1, the measured length should minus 23.45 mm
+
+# 13. robot trajectory generation
+```bash
+double amplitude = 0.03;
+        double pi = 3.1415926;
+        double dt = 0.005;
+        EyeRegisterPedalcount = EyeRegisterPedalcount +1;
+        if (EyeRegisterPedalcount ==1){
+           vctDouble5 JointRef = RobotState.JointPosition();
+           eyeballradius = JointRef[0];
+        }
+
+        vctDouble5 robotCurrentPosition = RobotState.JointPosition();
+        double currentMovedistance = robotCurrentPosition[0];
+        double generateVelocity = -amplitude*pi*sin(pi*dt*EyeRegisterPedalcount) + 0.01*((amplitude*cos(pi*dt*(EyeRegisterPedalcount- 1))-amplitude) + eyeballradius - currentMovedistance);
+        vctDouble5 newJointVelocities = vctDouble5(0.0, 0.0, 0.0, 0.0, 0.0);
+        newJointVelocities[0] = generateVelocity;
+        std::cout<<"joint velocity"<<generateVelocity<<std::endl;
+        if (EyeRegisterPedalcount == 4000){
+            EyeRegisterPedalcount = 0;
+
+        }
+        velocityJointSet.SetIsGoalOnly(true);
+        velocityJointSet.Mask().SetAll(true);
+        velocityJointSet.SetGoal(vctDoubleVec(newJointVelocities));
+        JointVelocityMove(velocityJointSet);
+ ```
